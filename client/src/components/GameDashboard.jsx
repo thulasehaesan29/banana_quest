@@ -411,12 +411,8 @@ export default function GameDashboard({
           <div className="puzzle-title-block">
             <h1 className="puzzle-title">🍌 Banana Puzzle Challenge</h1>
             <p className="puzzle-instructions">
-              Study the algebraic equation below and enter the numerical value of the banana.
+              Look at the puzzle below and enter your answer.
             </p>
-          </div>
-          <div className="interop-badge" title="Live integration with University of Bedfordshire Marc Conrad Banana API">
-            <ShieldCheck size={14} />
-            <span>Banana REST Service</span>
           </div>
         </div>
 

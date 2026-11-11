@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import Mascot from './Mascot';
-import { Trophy, Calendar, Sparkles, Clock, Play, Flame, ShieldAlert, Award } from 'lucide-react';
+import { Trophy, Calendar, Sparkles, Clock, Play, Flame, Award } from 'lucide-react';
 import { sounds } from './SoundEffects';
 
 export default function LevelSelect({ onStartGame, onViewLeaderboard }) {
@@ -190,14 +190,6 @@ export default function LevelSelect({ onStartGame, onViewLeaderboard }) {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Footer Pro Tip */}
-      <div className="level-footer-tip">
-        <ShieldAlert size={20} className="tip-icon" />
-        <span>
-          <strong>Enterprise Architecture Tip:</strong> Puzzles are fetched in real-time from the University REST API (<code>https://marcconrad.com/uob/banana/api.php</code>) and secured server-side to prevent client tampering.
-        </span>
       </div>
     </div>
   );
