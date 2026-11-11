@@ -8,7 +8,6 @@ import GameDashboard from './components/GameDashboard';
 import Leaderboard from './components/Leaderboard';
 import AchievementsModal from './components/AchievementsModal';
 import ProfileModal from './components/ProfileModal';
-import AcademicGuideModal from './components/AcademicGuideModal';
 import './App.css';
 
 function MainAppContent() {
@@ -20,7 +19,6 @@ function MainAppContent() {
   // Modals state
   const [showAchievements, setShowAchievements] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const [showAcademicGuide, setShowAcademicGuide] = useState(false);
 
   if (loading) {
     return (
@@ -97,7 +95,7 @@ function MainAppContent() {
 
   return (
     <div className="banana-quest-app">
-      {/* Top Navigation */}
+      {/* Top Navigation: Home, Leaderboard, Achievements, Profile */}
       <Navbar
         currentScreen={currentScreen}
         setScreen={setCurrentScreen}
@@ -105,22 +103,12 @@ function MainAppContent() {
         setIsMuted={setIsMuted}
         onOpenAchievements={() => setShowAchievements(true)}
         onOpenProfile={() => setShowProfile(true)}
-        onOpenAcademicGuide={() => setShowAcademicGuide(true)}
       />
 
       {/* Main View Area */}
       <main className="main-content-viewport">
         {renderScreen()}
       </main>
-
-      {/* Floating Quick Guide Button (Bottom Right) */}
-      <button
-        className="floating-guide-trigger"
-        onClick={() => setShowAcademicGuide(true)}
-        title="CIS046-3 Video Presentation Spec & 4-Themes Guide"
-      >
-        <span>📘 4-Themes Spec</span>
-      </button>
 
       {/* Modals */}
       {showAchievements && (
@@ -129,10 +117,6 @@ function MainAppContent() {
 
       {showProfile && (
         <ProfileModal onClose={() => setShowProfile(false)} />
-      )}
-
-      {showAcademicGuide && (
-        <AcademicGuideModal onClose={() => setShowAcademicGuide(false)} />
       )}
     </div>
   );

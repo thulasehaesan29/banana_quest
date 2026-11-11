@@ -7,9 +7,9 @@
       "username": "alex",
       "password": "$2a$10$wE3/p09/4gJj1n89g4L8o.8P5lK3mE.jR7zB/K9o2p1q0r9s8t7u6",
       "avatar": "glasses-monkey",
-      "totalBananas": 120,
+      "totalBananas": 142,
       "highScore": 240,
-      "gamesPlayed": 14,
+      "gamesPlayed": 15,
       "daysPlayed": 3,
       "level": 4,
       "achievements": [
@@ -70,6 +70,17 @@
       "puzzlesSolved": 1,
       "points": 90,
       "timestamp": "2026-11-09T19:04:48.973Z"
+    },
+    {
+      "id": "score-5536ed9c-9a1d-4c91-a3d3-e9960fee658b",
+      "userId": "demo-user-1",
+      "username": "alex",
+      "avatar": "glasses-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 22,
+      "level": 4,
+      "timestamp": "2026-11-11T07:20:54.113Z"
     }
   ],
   "activeGames": {}

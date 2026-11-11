@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Trophy, Award, User as UserIcon, LogOut, Volume2, VolumeX, Sparkles, BookOpen } from 'lucide-react';
+import { Home, Trophy, Award, User, LogOut, Volume2, VolumeX } from 'lucide-react';
 import { sounds } from './SoundEffects';
 
 export default function Navbar({
@@ -10,7 +10,6 @@ export default function Navbar({
   setIsMuted,
   onOpenAchievements,
   onOpenProfile,
-  onOpenAcademicGuide,
 }) {
   const { user, logout } = useAuth();
 
@@ -44,11 +43,10 @@ export default function Navbar({
           <span className="brand-banana">🍌</span>
           <div className="brand-text">
             <span className="brand-title">BANANA QUEST</span>
-            <span className="brand-subtitle">Software Enterprise Edition</span>
           </div>
         </div>
 
-        {/* Center Nav Links */}
+        {/* Center Nav Links: Home, Leaderboard, Achievements, Profile */}
         {user && (
           <nav className="nav-links">
             <button
@@ -58,7 +56,7 @@ export default function Navbar({
                 setScreen('level-select');
               }}
             >
-              🎮 Play
+              <Home size={16} /> Home
             </button>
             <button
               className={`nav-btn ${currentScreen === 'leaderboard' ? 'active' : ''}`}
@@ -79,19 +77,18 @@ export default function Navbar({
               <Award size={16} /> Achievements
             </button>
             <button
-              className="nav-btn academic-pill"
+              className="nav-btn"
               onClick={() => {
                 sounds.playClick();
-                onOpenAcademicGuide();
+                onOpenProfile();
               }}
-              title="View CIS046-3 4-Theme Video Presentation Guide"
             >
-              <BookOpen size={16} /> 4-Themes Guide
+              <User size={16} /> Profile
             </button>
           </nav>
         )}
 
-        {/* Right Actions & Virtual Identity Profile */}
+        {/* Right Actions & Profile */}
         <div className="nav-actions">
           {/* Audio Toggle */}
           <button
@@ -128,7 +125,7 @@ export default function Navbar({
               <button
                 className="icon-btn logout-btn"
                 onClick={handleLogout}
-                title="Logout of Virtual Identity"
+                title="Logout"
               >
                 <LogOut size={16} />
               </button>

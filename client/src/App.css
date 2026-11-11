@@ -885,11 +885,11 @@
 }
 
 .start-easy-btn {
-  background: #22C55E;
-  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4);
+  background: #32CD32;
+  box-shadow: 0 4px 14px rgba(50, 205, 50, 0.4);
 }
 .start-easy-btn:hover {
-  background: #16A34A;
+  background: #28A728;
   transform: translateY(-2px);
 }
 
@@ -903,11 +903,11 @@
 }
 
 .start-hard-btn {
-  background: #EA580C;
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.4);
+  background: #F97316;
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
 }
 .start-hard-btn:hover {
-  background: #C2410C;
+  background: #EA580C;
   transform: translateY(-2px);
 }
 
@@ -1219,35 +1219,62 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  width: 100%;
 }
 
-.digit-display-box {
+.text-input-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
   flex: 1;
+}
+
+.input-prefix-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.answer-text-input {
+  width: 100%;
+  padding: 14px 44px 14px 46px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #78350F;
   background: var(--bg-main);
   border: 2px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 8px 16px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
 }
 
-.digit-display-label {
-  font-size: 14px;
-  font-weight: 700;
+.answer-text-input:focus {
+  outline: none;
+  background: #FFFFFF;
+  border-color: #FFD700;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.25);
+}
+
+.input-clear-btn {
+  position: absolute;
+  right: 14px;
+  background: #E2E8F0;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
   color: var(--text-secondary);
+  cursor: pointer;
 }
 
-.digit-screen {
-  font-size: 28px;
-  font-weight: 800;
-  color: #78350F;
-  min-width: 40px;
-  text-align: center;
-}
-
-.screen-placeholder {
-  color: var(--text-muted);
+.input-clear-btn:hover {
+  background: #CBD5E1;
+  color: var(--text-primary);
 }
 
 .submit-answer-btn {

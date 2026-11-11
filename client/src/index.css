@@ -2,13 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
+  /* Specification Theme Colors */
   --primary-yellow: #FFD700;
-  --primary-yellow-hover: #F5C500;
+  --primary-yellow-hover: #E6C200;
   --primary-yellow-light: #FFFBE6;
-  --secondary-blue: #0284C7;
-  --secondary-blue-light: #E0F2FE;
-  --accent-green: #22C55E;
-  --accent-green-light: #DCFCE7;
+  --secondary-blue: #87CEEB;
+  --secondary-blue-hover: #5DB8DE;
+  --secondary-blue-light: #F0F9FF;
+  --accent-green: #32CD32;
+  --accent-green-hover: #28A728;
+  --accent-green-light: #EAFAEA;
   --accent-brown: #8B4513;
   --accent-orange: #F97316;
   --accent-purple: #8B5CF6;
@@ -16,7 +19,7 @@
   --bg-main: #F8FAFC;
   --bg-card: #FFFFFF;
   --border-light: #E2E8F0;
-  --border-focus: #F59E0B;
+  --border-focus: #FFD700;
 
   --text-primary: #1E293B;
   --text-secondary: #64748B;

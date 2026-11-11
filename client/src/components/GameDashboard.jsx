@@ -123,12 +123,12 @@ export default function GameDashboard({
 
       setTimeRemaining((prev) => {
         if (prev <= 1) {
-          clearInterval(timerRef.current);
+          // Timer reached zero -> deduct 1 life
           handleTimeExpired();
-          return 0;
+          return maxTime; // Reset timer so the game countdown continues with 1 less life
         }
 
-        // Warning tick sound when timer < 10
+        // Warning tick sound when timer <= 10
         if (prev <= 10) {
           sounds.playTick();
         }
@@ -138,11 +138,33 @@ export default function GameDashboard({
     }, 1000);
 
     return () => clearInterval(timerRef.current);
-  }, [loading, gameOverModal, victoryModal, sessionId, freezeActive]);
+  }, [loading, gameOverModal, victoryModal, sessionId, freezeActive, maxTime]);
 
-  const handleTimeExpired = () => {
+  const handleTimeExpired = async () => {
     sounds.playWrong();
-    logEvent('⏱️ Time expired on puzzle!');
+    logEvent('⏱️ Time expired! 1 life deducted.');
+
+    try {
+      if (sessionId) {
+        const timeoutRes = await gameApi.handleTimeout(sessionId);
+        if (timeoutRes.status === 'GAME_OVER' || timeoutRes.livesRemaining <= 0) {
+          setLives(0);
+          setGameOverModal(true);
+          logEvent('💀 Game Over: Out of lives!');
+          return;
+        } else {
+          setLives(timeoutRes.livesRemaining);
+          setFeedbackMessage({
+            type: 'error',
+            text: `Time's up! You lost 1 life. ${timeoutRes.livesRemaining} hearts remaining.`,
+          });
+          return;
+        }
+      }
+    } catch {
+      // Local fallback in case of network interruption
+    }
+
     setLives((prev) => {
       const nextLives = prev - 1;
       if (nextLives <= 0) {
@@ -151,12 +173,10 @@ export default function GameDashboard({
       } else {
         setFeedbackMessage({
           type: 'error',
-          text: `Time's up! You lost 1 life. ${nextLives} remaining.`,
+          text: `Time's up! You lost 1 life. ${nextLives} hearts remaining.`,
         });
-        // Reset timer for current puzzle attempt
-        setTimeRemaining(maxTime);
       }
-      return nextLives;
+      return Math.max(0, nextLives);
     });
   };
 
@@ -165,9 +185,12 @@ export default function GameDashboard({
     const handleKeyDown = (e) => {
       if (loading || submitting || gameOverModal || victoryModal) return;
 
+      // Allow typing in text field without overriding
+      if (e.target && e.target.tagName === 'INPUT') return;
+
       if (e.key >= '0' && e.key <= '9') {
         sounds.playClick();
-        setAnswerInput(e.key); // single digit solution from banana API
+        setAnswerInput(e.key);
       } else if (e.key === 'Backspace' || e.key === 'Delete') {
         sounds.playClick();
         setAnswerInput('');
@@ -433,17 +456,42 @@ export default function GameDashboard({
 
         {/* Input & Keypad Controls */}
         <div className="game-controls-container">
-          <div className="answer-input-row">
-            <div className="digit-display-box">
-              <span className="digit-display-label">Your Answer:</span>
-              <div className="digit-screen">
-                {answerInput !== '' ? answerInput : <span className="screen-placeholder">?</span>}
-              </div>
+          <form
+            className="answer-input-row"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmitAnswer();
+            }}
+          >
+            <div className="text-input-wrapper">
+              <span className="input-prefix-icon">🍌</span>
+              <input
+                type="text"
+                className="answer-text-input"
+                placeholder="Enter your answer (0-9)"
+                value={answerInput}
+                onChange={(e) => {
+                  const cleaned = e.target.value.replace(/[^0-9]/g, '').slice(0, 2);
+                  setAnswerInput(cleaned);
+                }}
+                disabled={submitting || loading}
+                autoFocus
+              />
+              {answerInput && (
+                <button
+                  type="button"
+                  className="input-clear-btn"
+                  onClick={() => setAnswerInput('')}
+                  title="Clear"
+                >
+                  ✕
+                </button>
+              )}
             </div>
 
             <button
+              type="submit"
               className="primary-btn submit-answer-btn"
-              onClick={() => handleSubmitAnswer()}
               disabled={submitting || loading || answerInput === ''}
             >
               {submitting ? (
@@ -455,7 +503,7 @@ export default function GameDashboard({
                 </>
               )}
             </button>
-          </div>
+          </form>
 
           {/* Interactive On-Screen Number Pad (0-9 + Backspace) */}
           <div className="numpad-grid">

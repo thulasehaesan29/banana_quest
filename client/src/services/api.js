@@ -82,6 +82,12 @@ export const gameApi = {
       body: JSON.stringify({ sessionId, answer, timeRemaining }),
     }),
 
+  handleTimeout: (sessionId) =>
+    request('/game/timeout', {
+      method: 'POST',
+      body: JSON.stringify({ sessionId }),
+    }),
+
   getAiHint: (sessionId) =>
     request('/game/hint', {
       method: 'POST',

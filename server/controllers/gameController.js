@@ -259,6 +259,44 @@ exports.submitAnswer = async (req, res) => {
 };
 
 /**
+ * Handle Time Out: Decreases lives by 1 when puzzle timer reaches 0
+ */
+exports.handleTimeout = async (req, res) => {
+  try {
+    const { sessionId } = req.body;
+    const session = activeSessions.get(sessionId);
+
+    if (!session) {
+      return res.status(404).json({ success: false, message: 'Game session not active' });
+    }
+
+    session.lives -= 1;
+    console.log(`[GameEngine] Session ${sessionId} timed out. Lives remaining: ${session.lives}`);
+
+    if (session.lives <= 0) {
+      activeSessions.delete(sessionId);
+      return res.status(200).json({
+        success: true,
+        status: 'GAME_OVER',
+        livesRemaining: 0,
+        correctSolution: session.currentSolution,
+        message: `Time expired! You ran out of lives. The correct answer was ${session.currentSolution}.`
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      status: 'TIMEOUT',
+      livesRemaining: session.lives,
+      message: `Time expired! 1 life lost. ${session.lives} heart(s) remaining.`
+    });
+  } catch (err) {
+    console.error('[GameEngine] Timeout error:', err);
+    return res.status(500).json({ success: false, message: 'Failed to process timeout' });
+  }
+};
+
+/**
  * Power-up: AI Clue / Hint Generation
  */
 exports.getAiHint = (req, res) => {
