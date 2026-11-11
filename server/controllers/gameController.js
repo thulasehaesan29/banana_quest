@@ -259,7 +259,7 @@ exports.submitAnswer = async (req, res) => {
 };
 
 /**
- * Handle Time Out: Decreases lives by 1 when puzzle timer reaches 0
+ * Handle Time Out: Decreases EXACTLY 1 life when puzzle timer reaches 0
  */
 exports.handleTimeout = async (req, res) => {
   try {
@@ -270,8 +270,21 @@ exports.handleTimeout = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Game session not active' });
     }
 
-    session.lives -= 1;
-    console.log(`[GameEngine] Session ${sessionId} timed out. Lives remaining: ${session.lives}`);
+    // Debounce server timeouts: ignore duplicate calls within 1500ms
+    const now = Date.now();
+    if (session.lastTimeoutAt && (now - session.lastTimeoutAt < 1500)) {
+      return res.status(200).json({
+        success: true,
+        status: session.lives <= 0 ? 'GAME_OVER' : 'TIMEOUT',
+        livesRemaining: session.lives,
+        message: `Timeout already registered.`
+      });
+    }
+    session.lastTimeoutAt = now;
+
+    // Deduct EXACTLY 1 life
+    session.lives = Math.max(0, session.lives - 1);
+    console.log(`[GameEngine] Session ${sessionId} timed out. Deducted EXACTLY 1 life. Lives remaining: ${session.lives}`);
 
     if (session.lives <= 0) {
       activeSessions.delete(sessionId);

@@ -55,6 +55,7 @@ export default function GameDashboard({
   const [zoomImage, setZoomImage] = useState(false);
 
   const timerRef = useRef(null);
+  const isTimingOutRef = useRef(false);
 
   // Helper to add activity log entry
   const logEvent = (text) => {
@@ -79,6 +80,7 @@ export default function GameDashboard({
     setFreezeActive(false);
     setFreezeAvailable(true);
     setFeedbackMessage(null);
+    isTimingOutRef.current = false;
 
     try {
       logEvent(`Initializing ${difficulty.toUpperCase()} game session...`);
@@ -103,7 +105,7 @@ export default function GameDashboard({
 
   // 2. Countdown Timer Event Loop
   useEffect(() => {
-    if (loading || gameOverModal || victoryModal || !sessionId) return;
+    if (loading || gameOverModal || victoryModal || !sessionId || timeRemaining === 0) return;
 
     if (timerRef.current) clearInterval(timerRef.current);
 
@@ -123,9 +125,8 @@ export default function GameDashboard({
 
       setTimeRemaining((prev) => {
         if (prev <= 1) {
-          // Timer reached zero -> deduct 1 life
-          handleTimeExpired();
-          return maxTime; // Reset timer so the game countdown continues with 1 less life
+          clearInterval(timerRef.current);
+          return 0; // Trigger timeout effect once
         }
 
         // Warning tick sound when timer <= 10
@@ -138,11 +139,20 @@ export default function GameDashboard({
     }, 1000);
 
     return () => clearInterval(timerRef.current);
-  }, [loading, gameOverModal, victoryModal, sessionId, freezeActive, maxTime]);
+  }, [loading, gameOverModal, victoryModal, sessionId, freezeActive, timeRemaining]);
+
+  // Handle timeout strictly ONCE when timeRemaining hits 0
+  useEffect(() => {
+    if (timeRemaining === 0 && !loading && !gameOverModal && !victoryModal && sessionId) {
+      if (isTimingOutRef.current) return;
+      isTimingOutRef.current = true;
+      handleTimeExpired();
+    }
+  }, [timeRemaining, loading, gameOverModal, victoryModal, sessionId]);
 
   const handleTimeExpired = async () => {
     sounds.playWrong();
-    logEvent('⏱️ Time expired! 1 life deducted.');
+    logEvent('⏱️ Time expired! 1 life lost.');
 
     try {
       if (sessionId) {
@@ -158,26 +168,30 @@ export default function GameDashboard({
             type: 'error',
             text: `Time's up! You lost 1 life. ${timeoutRes.livesRemaining} hearts remaining.`,
           });
+          // Reset timer to full duration so player can continue with remaining lives
+          setTimeRemaining(maxTime);
+          isTimingOutRef.current = false;
           return;
         }
       }
     } catch {
-      // Local fallback in case of network interruption
+      // Local fallback in case network drops
+      setLives((prev) => {
+        const nextLives = Math.max(0, prev - 1);
+        if (nextLives <= 0) {
+          setGameOverModal(true);
+          logEvent('💀 Game Over: Out of lives.');
+        } else {
+          setFeedbackMessage({
+            type: 'error',
+            text: `Time's up! You lost 1 life. ${nextLives} hearts remaining.`,
+          });
+          setTimeRemaining(maxTime);
+        }
+        return nextLives;
+      });
+      isTimingOutRef.current = false;
     }
-
-    setLives((prev) => {
-      const nextLives = prev - 1;
-      if (nextLives <= 0) {
-        setGameOverModal(true);
-        logEvent('💀 Game Over: Out of time and lives.');
-      } else {
-        setFeedbackMessage({
-          type: 'error',
-          text: `Time's up! You lost 1 life. ${nextLives} hearts remaining.`,
-        });
-      }
-      return Math.max(0, nextLives);
-    });
   };
 
   // 3. Physical Keyboard Event Listener (0-9, Backspace, Enter)
@@ -240,6 +254,7 @@ export default function GameDashboard({
           setAnswerInput('');
           setAiHint('');
           setTimeRemaining(maxTime);
+          isTimingOutRef.current = false;
           setFeedbackMessage({
             type: 'success',
             text: `✨ Correct! +${result.pointsEarned} points. Next puzzle unlocked!`,
