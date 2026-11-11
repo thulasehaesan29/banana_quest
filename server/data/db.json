@@ -7,11 +7,11 @@
       "username": "alex",
       "password": "$2a$10$wE3/p09/4gJj1n89g4L8o.8P5lK3mE.jR7zB/K9o2p1q0r9s8t7u6",
       "avatar": "glasses-monkey",
-      "totalBananas": 274,
-      "highScore": 240,
-      "gamesPlayed": 17,
+      "totalBananas": 705,
+      "highScore": 330,
+      "gamesPlayed": 22,
       "daysPlayed": 3,
-      "level": 6,
+      "level": 15,
       "achievements": [
         "first_banana",
         "puzzle_master"
@@ -103,6 +103,61 @@
       "points": 107,
       "level": 6,
       "timestamp": "2026-11-11T07:37:14.312Z"
+    },
+    {
+      "id": "score-6afcf368-5603-4352-a11b-51f09cd4e45b",
+      "userId": "demo-user-1",
+      "username": "alex",
+      "avatar": "glasses-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 23,
+      "level": 6,
+      "timestamp": "2026-11-11T07:41:19.439Z"
+    },
+    {
+      "id": "score-2c95d140-7082-40bf-a48d-5a72cf614021",
+      "userId": "demo-user-1",
+      "username": "alex",
+      "avatar": "glasses-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 25,
+      "level": 7,
+      "timestamp": "2026-11-11T07:49:58.899Z"
+    },
+    {
+      "id": "score-a8f258f4-8d3a-49a3-867b-0036d858de95",
+      "userId": "demo-user-1",
+      "username": "alex",
+      "avatar": "glasses-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 26,
+      "level": 7,
+      "timestamp": "2026-11-11T07:55:03.959Z"
+    },
+    {
+      "id": "score-968dc546-a1cd-45ef-ad50-23f28861ba85",
+      "userId": "demo-user-1",
+      "username": "alex",
+      "avatar": "glasses-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 27,
+      "level": 8,
+      "timestamp": "2026-11-11T07:55:34.617Z"
+    },
+    {
+      "id": "score-5ff7c4b9-679c-4eb3-8737-9199e615904a",
+      "userId": "demo-user-1",
+      "username": "alex",
+      "avatar": "glasses-monkey",
+      "difficulty": "hard",
+      "puzzlesSolved": 3,
+      "points": 330,
+      "level": 15,
+      "timestamp": "2026-11-11T07:57:19.987Z"
     }
   ],
   "activeGames": {}

@@ -1172,6 +1172,8 @@
   position: relative;
   display: inline-block;
   max-width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
 }
 
 .puzzle-image {
@@ -1181,6 +1183,9 @@
   box-shadow: var(--shadow-sm);
   cursor: pointer;
   transition: transform 0.2s ease;
+  /* Crop the top watermark area ("Six Equations" / "www.sanfoh.com") from API images */
+  margin-top: -35px;
+  clip-path: inset(0 0 0 0);
 }
 
 .puzzle-image:hover {
@@ -2352,4 +2357,29 @@
   .profile-body-layout {
     grid-template-columns: 1fr;
   }
+}
+
+
+/* Score earned animation */
+.score-anim {
+  position: absolute;
+  top: -8px;
+  right: -4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #22c55e;
+  animation: scoreFloat 1.5s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes scoreFloat {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-28px); }
+}
+.stat-card-value {
+  position: relative;
+}
+
+/* Zoomed puzzle image also hides watermark */
+.zoomed-puzzle-img {
+  margin-top: -35px;
 }

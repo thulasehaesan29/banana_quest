@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
+import { useAuth } from '../context/AuthContext';
 import { gameApi } from '../services/api';
 import { sounds } from './SoundEffects';
 import {
@@ -13,11 +14,8 @@ import {
   RotateCcw,
   Sparkles,
   Bot,
-  AlertTriangle,
   ZoomIn,
-  ShieldCheck,
   Award,
-  ChevronRight,
   Info,
 } from 'lucide-react';
 
@@ -53,7 +51,9 @@ export default function GameDashboard({
   const [gameOverModal, setGameOverModal] = useState(false);
   const [victoryModal, setVictoryModal] = useState(false);
   const [zoomImage, setZoomImage] = useState(false);
+  const [scoreEarnedAnim, setScoreEarnedAnim] = useState(null);
 
+  const { user, refreshUser } = useAuth();
   const timerRef = useRef(null);
   const isTimingOutRef = useRef(false);
 
@@ -237,6 +237,8 @@ export default function GameDashboard({
       if (result.correct) {
         sounds.playCorrect();
         setScore(result.totalScore);
+        setScoreEarnedAnim(`+${result.pointsEarned}`);
+        setTimeout(() => setScoreEarnedAnim(null), 1500);
 
         if (result.status === 'VICTORY') {
           // Trigger confetti shower!
@@ -248,6 +250,8 @@ export default function GameDashboard({
           sounds.playVictory();
           setVictoryModal(true);
           logEvent(`🏆 Victory! Completed ${difficulty} level with score ${result.totalScore}!`);
+          // Refresh user data so navbar banana count updates
+          refreshUser();
         } else if (result.status === 'NEXT_PUZZLE') {
           setQuestionUrl(result.questionUrl);
           setCurrentPuzzleIndex(result.currentPuzzleIndex);
@@ -346,7 +350,10 @@ export default function GameDashboard({
             <Trophy className="stat-card-icon trophy-color" size={24} />
             <span className="stat-card-title">Score</span>
           </div>
-          <div className="stat-card-value">{score}</div>
+          <div className="stat-card-value">
+            {score}
+            {scoreEarnedAnim && <span className="score-anim">{scoreEarnedAnim}</span>}
+          </div>
           <span className="stat-card-sub">Points Earned</span>
         </div>
 
@@ -658,7 +665,9 @@ export default function GameDashboard({
       {zoomImage && (
         <div className="modal-overlay" onClick={() => setZoomImage(false)}>
           <div className="modal-content zoom-modal" onClick={(e) => e.stopPropagation()}>
-            <img src={questionUrl} alt="Zoomed Puzzle" className="zoomed-puzzle-img" />
+            <div style={{ overflow: 'hidden', borderRadius: '8px' }}>
+              <img src={questionUrl} alt="Zoomed Puzzle" className="zoomed-puzzle-img" />
+            </div>
             <button className="primary-btn close-zoom-btn" onClick={() => setZoomImage(false)}>
               Close Zoom
             </button>
