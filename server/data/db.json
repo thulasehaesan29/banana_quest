@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "id": "demo-user-1",
+      "name": "Alex Johnson",
+      "email": "alex@bananaquest.com",
+      "username": "alex",
+      "password": "$2a$10$wE3/p09/4gJj1n89g4L8o.8P5lK3mE.jR7zB/K9o2p1q0r9s8t7u6",
+      "avatar": "glasses-monkey",
+      "totalBananas": 120,
+      "highScore": 240,
+      "gamesPlayed": 14,
+      "daysPlayed": 3,
+      "level": 4,
+      "achievements": [
+        "first_banana",
+        "puzzle_master"
+      ],
+      "createdAt": "2026-11-08T07:04:48.972Z",
+      "lastLogin": "2026-11-11T07:04:48.973Z"
+    }
+  ],
+  "scores": [
+    {
+      "id": "score-1",
+      "userId": "demo-user-1",
+      "username": "alex",
+      "avatar": "glasses-monkey",
+      "difficulty": "medium",
+      "puzzlesSolved": 2,
+      "points": 240,
+      "timestamp": "2026-11-11T07:04:48.973Z"
+    },
+    {
+      "id": "score-2",
+      "userId": "demo-bot-1",
+      "username": "KingKong99",
+      "avatar": "super-monkey",
+      "difficulty": "hard",
+      "puzzlesSolved": 3,
+      "points": 380,
+      "timestamp": "2026-11-11T05:04:48.973Z"
+    },
+    {
+      "id": "score-3",
+      "userId": "demo-bot-2",
+      "username": "ChimpChampion",
+      "avatar": "happy-monkey",
+      "difficulty": "hard",
+      "puzzlesSolved": 3,
+      "points": 310,
+      "timestamp": "2026-11-10T19:04:48.973Z"
+    },
+    {
+      "id": "score-4",
+      "userId": "demo-bot-3",
+      "username": "BananaBaron",
+      "avatar": "ninja-monkey",
+      "difficulty": "medium",
+      "puzzlesSolved": 2,
+      "points": 190,
+      "timestamp": "2026-11-10T07:04:48.973Z"
+    },
+    {
+      "id": "score-5",
+      "userId": "demo-bot-4",
+      "username": "JunglePro",
+      "avatar": "space-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 90,
+      "timestamp": "2026-11-09T19:04:48.973Z"
+    }
+  ],
+  "activeGames": {}
+}
