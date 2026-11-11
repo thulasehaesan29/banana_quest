@@ -19,7 +19,10 @@ client/build/
 server/dist/
 
 # Environment files
-# Build output
+.env
+.env.local
+.env.*.local
+!.env.example
 dist/
 build/
 coverage/

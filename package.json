@@ -1,0 +1,23 @@
+{
+  "name": "banana-quest-enterprise",
+  "version": "1.0.0",
+  "description": "Banana Quest - University of Bedfordshire CIS046-3 Software For Enterprise Artifact",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "npm --prefix server start",
+    "server:dev": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build"
+  },
+  "keywords": [
+    "banana-game",
+    "software-for-enterprise",
+    "cis046-3",
+    "event-driven",
+    "interoperability",
+    "virtual-identity",
+    "version-control"
+  ],
+  "author": "University of Bedfordshire Student",
+  "license": "ISC"
+}
