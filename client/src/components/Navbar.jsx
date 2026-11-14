@@ -40,9 +40,9 @@ export default function Navbar({
             else setScreen('login');
           }}
         >
-          <span className="brand-banana">🍌</span>
+          <span className="brand-banana pulse-glow">🧠</span>
           <div className="brand-text">
-            <span className="brand-title">BANANA QUEST</span>
+            <span className="brand-title gradient-text">MINDRUSH</span>
           </div>
         </div>
 

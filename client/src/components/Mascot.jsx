@@ -18,19 +18,19 @@ export default function Mascot({ variant = 'happy', size = 160, className = '' }
       >
         <defs>
           <linearGradient id="monkeyFur" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#A0522D" />
-            <stop offset="100%" stopColor="#6E2C00" />
+            <stop offset="0%" stopColor="#7C3A18" />
+            <stop offset="100%" stopColor="#4A1E08" />
           </linearGradient>
           <linearGradient id="monkeyFace" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FFD39B" />
-            <stop offset="100%" stopColor="#EEA768" />
+            <stop offset="0%" stopColor="#FFE4C4" />
+            <stop offset="100%" stopColor="#F5BE88" />
           </linearGradient>
           <linearGradient id="bananaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FFF200" />
-            <stop offset="100%" stopColor="#FFB300" />
+            <stop offset="0%" stopColor="#FDE047" />
+            <stop offset="100%" stopColor="#F59E0B" />
           </linearGradient>
           <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
-            <feDropShadow dx="0" dy="4" stdDeviation="4" floodOpacity="0.15" />
+            <feDropShadow dx="0" dy="4" stdDeviation="4" floodOpacity="0.2" />
           </filter>
         </defs>
 

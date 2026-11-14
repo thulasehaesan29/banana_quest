@@ -53,7 +53,7 @@ export default function Leaderboard({ onStartPlay }) {
           <div className="title-row">
             <Trophy size={32} className="trophy-gold" />
             <div>
-              <h1 className="leaderboard-title">Banana Quest Leaderboard</h1>
+              <h1 className="leaderboard-title">MindRush Leaderboard</h1>
               <p className="leaderboard-sub">
                 Top players ranked by total points across enterprise puzzle sessions
               </p>
