@@ -1,39 +1,66 @@
 /* Global Base & Typography Styles */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&display=swap');
 
 :root {
-  /* Specification Theme Colors */
-  --primary-yellow: #FFD700;
-  --primary-yellow-hover: #E6C200;
-  --primary-yellow-light: #FFFBE6;
-  --secondary-blue: #87CEEB;
-  --secondary-blue-hover: #5DB8DE;
-  --secondary-blue-light: #F0F9FF;
-  --accent-green: #32CD32;
-  --accent-green-hover: #28A728;
-  --accent-green-light: #EAFAEA;
-  --accent-brown: #8B4513;
+  /* 🍃 Fresh Mint & Lime Light Green Theme */
+  --mint-primary: #10B981;
+  --mint-hover: #059669;
+  --mint-light: #ECFDF5;
+  --mint-soft: #D1FAE5;
+  --mint-border: #A7F3D0;
+  --mint-glow: rgba(16, 185, 129, 0.25);
+
+  --lime-accent: #84CC16;
+  --lime-hover: #65A30D;
+  --lime-light: #F7FEE7;
+  --lime-border: #D9F99D;
+
+  --banana-accent: #EAB308;
+  --banana-hover: #CA8A04;
+  --banana-light: #FEF9C3;
+  --banana-border: #FDE047;
+
+  --emerald-dark: #064E3B;
+  --forest-deep: #065F46;
+
+  /* Universal Theme Mappings */
+  --primary-yellow: #10B981;
+  --primary-yellow-hover: #059669;
+  --primary-yellow-light: #ECFDF5;
+
+  --secondary-blue: #0D9488;
+  --secondary-blue-hover: #0F766E;
+  --secondary-blue-light: #F0FDFA;
+
+  --accent-green: #10B981;
+  --accent-green-hover: #059669;
+  --accent-green-light: #ECFDF5;
+
+  --accent-brown: #064E3B;
   --accent-orange: #F97316;
   --accent-purple: #8B5CF6;
 
-  --bg-main: #F8FAFC;
+  /* Surfaces & Backgrounds */
+  --bg-main: #F0FDF4;
   --bg-card: #FFFFFF;
-  --border-light: #E2E8F0;
-  --border-focus: #FFD700;
+  --border-light: #D1FAE5;
+  --border-focus: #10B981;
 
-  --text-primary: #1E293B;
-  --text-secondary: #64748B;
-  --text-muted: #94A3B8;
+  --text-primary: #064E3B;
+  --text-secondary: #047857;
+  --text-muted: #6EE7B7;
+  --text-dark: #022C22;
 
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-yellow: 0 4px 14px 0 rgba(255, 215, 0, 0.4);
+  /* Soft Fresh Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(6, 78, 59, 0.05);
+  --shadow-md: 0 4px 12px -1px rgba(6, 78, 59, 0.08), 0 2px 4px -1px rgba(6, 78, 59, 0.04);
+  --shadow-lg: 0 12px 24px -4px rgba(6, 78, 59, 0.12), 0 4px 8px -2px rgba(6, 78, 59, 0.05);
+  --shadow-xl: 0 20px 32px -6px rgba(6, 78, 59, 0.16);
+  --shadow-mint: 0 6px 18px rgba(16, 185, 129, 0.35);
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
   --radius-full: 9999px;
 
   --font-heading: 'Fredoka', cursive, sans-serif;
@@ -48,17 +75,20 @@
 
 body {
   font-family: var(--font-body);
-  color: var(--text-primary);
+  color: var(--text-dark);
   background-color: var(--bg-main);
-  background-image: radial-gradient(#FDE047 0.75px, transparent 0.75px), radial-gradient(#E2E8F0 0.75px, var(--bg-main) 0.75px);
-  background-size: 30px 30px;
-  background-position: 0 0, 15px 15px;
+  background-image: 
+    radial-gradient(#86EFAC 1px, transparent 1px),
+    radial-gradient(#BBF7D0 1px, transparent 1px);
+  background-size: 28px 28px, 42px 42px;
+  background-position: 0 0, 14px 14px;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, .brand-title, .visual-heading {
   font-family: var(--font-heading);
+  letter-spacing: 0.02em;
 }
 
 button {

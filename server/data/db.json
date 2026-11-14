@@ -25,17 +25,17 @@
       "email": "thulasehaesanm@gmail.com",
       "username": "Thulase",
       "password": "$2b$10$KltKHLkZwUoX3xm/4e4Y4.yHqLoBi4ZLZa2YAZuyaGibjvT5p5X5G",
-      "avatar": "happy-monkey",
-      "totalBananas": 316,
-      "highScore": 96,
-      "gamesPlayed": 8,
+      "avatar": "ninja-monkey",
+      "totalBananas": 1339,
+      "highScore": 302,
+      "gamesPlayed": 18,
       "daysPlayed": 1,
-      "level": 7,
+      "level": 27,
       "achievements": [
         "welcome_monkey"
       ],
       "createdAt": "2026-11-14T07:07:30.048Z",
-      "lastLogin": "2026-11-14T07:07:30.048Z"
+      "lastLogin": "2026-11-14T10:54:51.506Z"
     }
   ],
   "scores": [
@@ -286,6 +286,116 @@
       "points": 96,
       "level": 7,
       "timestamp": "2026-11-14T08:10:05.600Z"
+    },
+    {
+      "id": "score-d73e1ea7-9529-45b2-a3c4-1db86fa28ee5",
+      "userId": "user-98f2b868-6c5b-4ad7-b327-8bd12b7e580a",
+      "username": "Thulase",
+      "avatar": "happy-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 27,
+      "level": 7,
+      "timestamp": "2026-11-14T10:03:20.900Z"
+    },
+    {
+      "id": "score-c10a8848-36dc-4ce2-afa2-d09f473d68be",
+      "userId": "user-98f2b868-6c5b-4ad7-b327-8bd12b7e580a",
+      "username": "Thulase",
+      "avatar": "happy-monkey",
+      "difficulty": "medium",
+      "puzzlesSolved": 2,
+      "points": 99,
+      "level": 9,
+      "timestamp": "2026-11-14T10:03:59.425Z"
+    },
+    {
+      "id": "score-8c31fdfe-b2c0-4e9e-b9b8-29713aff030d",
+      "userId": "user-98f2b868-6c5b-4ad7-b327-8bd12b7e580a",
+      "username": "Thulase",
+      "avatar": "happy-monkey",
+      "difficulty": "hard",
+      "puzzlesSolved": 3,
+      "points": 290,
+      "level": 15,
+      "timestamp": "2026-11-14T10:05:00.208Z"
+    },
+    {
+      "id": "score-31dee3fc-2a82-4209-9c8e-28f0b3c01870",
+      "userId": "user-98f2b868-6c5b-4ad7-b327-8bd12b7e580a",
+      "username": "Thulase",
+      "avatar": "happy-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 22,
+      "level": 16,
+      "timestamp": "2026-11-14T10:05:38.944Z"
+    },
+    {
+      "id": "score-f9830e0d-cc1c-4064-8162-47e126870652",
+      "userId": "user-98f2b868-6c5b-4ad7-b327-8bd12b7e580a",
+      "username": "Thulase",
+      "avatar": "happy-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 24,
+      "level": 16,
+      "timestamp": "2026-11-14T10:11:43.455Z"
+    },
+    {
+      "id": "score-eb2bf36b-3020-4281-b77f-659f6a97865c",
+      "userId": "user-98f2b868-6c5b-4ad7-b327-8bd12b7e580a",
+      "username": "Thulase",
+      "avatar": "happy-monkey",
+      "difficulty": "hard",
+      "puzzlesSolved": 3,
+      "points": 302,
+      "level": 22,
+      "timestamp": "2026-11-14T10:13:26.734Z"
+    },
+    {
+      "id": "score-0870f193-cb52-4f22-a028-63b526bd25a5",
+      "userId": "user-98f2b868-6c5b-4ad7-b327-8bd12b7e580a",
+      "username": "Thulase",
+      "avatar": "happy-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 25,
+      "level": 23,
+      "timestamp": "2026-11-14T10:14:37.585Z"
+    },
+    {
+      "id": "score-5d79faf6-907b-4317-87f0-4ac7027a83e7",
+      "userId": "user-98f2b868-6c5b-4ad7-b327-8bd12b7e580a",
+      "username": "Thulase",
+      "avatar": "happy-monkey",
+      "difficulty": "medium",
+      "puzzlesSolved": 2,
+      "points": 101,
+      "level": 25,
+      "timestamp": "2026-11-14T10:15:10.867Z"
+    },
+    {
+      "id": "score-8299db5f-c28c-432a-968f-b210ea338199",
+      "userId": "user-98f2b868-6c5b-4ad7-b327-8bd12b7e580a",
+      "username": "Thulase",
+      "avatar": "happy-monkey",
+      "difficulty": "easy",
+      "puzzlesSolved": 1,
+      "points": 28,
+      "level": 25,
+      "timestamp": "2026-11-14T10:40:50.604Z"
+    },
+    {
+      "id": "score-b3e70c7c-8e8d-4238-bb99-dad1acaefa36",
+      "userId": "user-98f2b868-6c5b-4ad7-b327-8bd12b7e580a",
+      "username": "Thulase",
+      "avatar": "happy-monkey",
+      "difficulty": "medium",
+      "puzzlesSolved": 2,
+      "points": 105,
+      "level": 27,
+      "timestamp": "2026-11-14T10:41:16.143Z"
     }
   ],
   "activeGames": {}

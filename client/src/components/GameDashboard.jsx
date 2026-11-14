@@ -431,7 +431,7 @@ export default function GameDashboard({
       <main className="game-center-arena">
         <div className="puzzle-header-bar">
           <div className="puzzle-title-block">
-            <h1 className="puzzle-title">🍌 Banana Puzzle Challenge</h1>
+            <h1 className="puzzle-title">🧠 MindRush Equation Challenge</h1>
             <p className="puzzle-instructions">
               Look at the puzzle below and enter your answer.
             </p>

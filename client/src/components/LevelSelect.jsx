@@ -19,174 +19,171 @@ export default function LevelSelect({ onStartGame, onViewLeaderboard }) {
   const level = user?.level ?? 4;
 
   return (
-    <div className="level-select-container">
-      {/* Personalized Header Banner */}
-      <div className="level-header-banner">
-        <div className="greeting-text-block">
-          <div className="welcome-tag">
-            <span className="sparkle-icon">✨</span> Welcome to Banana Quest
+    <div className="mindrush-level-select-page">
+      {/* Personalized Header Hero */}
+      <div className="mindrush-level-hero">
+        <div className="hero-content-left">
+          <div className="hero-tag-pill pulse-glow">
+            <span>✨</span> MINDRUSH ARENA
           </div>
-          <h1 className="player-greeting">
-            Hello, {playerName}! <span className="wave-hand">👋</span>
+          <h1 className="hero-player-title">
+            Welcome back, <span className="highlight-player">{playerName}</span>! <span className="wave-hand">👋</span>
           </h1>
-          <p className="greeting-subtext">
-            Choose your difficulty level and tackle real-time algebraic puzzles fetched from the external Banana REST API!
+          <p className="hero-player-sub">
+            Select your challenge level below to solve live equations and climb the ranks!
           </p>
         </div>
 
-        {/* User Stats Card */}
-        <div className="stats-pill-container">
-          <div className="stat-pill">
-            <div className="stat-icon-wrapper banana-accent">
-              <span className="stat-emoji">🍌</span>
-            </div>
-            <div className="stat-details">
-              <span className="stat-number">{totalBananas}</span>
-              <span className="stat-title">Total Bananas</span>
+        {/* Floating Quick Stats Ribbon */}
+        <div className="hero-stats-ribbon">
+          <div className="ribbon-stat-item">
+            <span className="ribbon-icon">🍌</span>
+            <div className="ribbon-text">
+              <strong className="ribbon-val">{totalBananas}</strong>
+              <span className="ribbon-lbl">Bananas</span>
             </div>
           </div>
 
-          <div className="stat-pill">
-            <div className="stat-icon-wrapper calendar-accent">
-              <Calendar size={22} className="accent-icon" />
-            </div>
-            <div className="stat-details">
-              <span className="stat-number">{daysPlayed} Days</span>
-              <span className="stat-title">Days Played</span>
+          <div className="ribbon-stat-item">
+            <Calendar size={20} className="ribbon-icon calendar-color" />
+            <div className="ribbon-text">
+              <strong className="ribbon-val">{daysPlayed}d</strong>
+              <span className="ribbon-lbl">Played</span>
             </div>
           </div>
 
-          <div className="stat-pill">
-            <div className="stat-icon-wrapper trophy-accent">
-              <Trophy size={22} className="accent-icon" />
-            </div>
-            <div className="stat-details">
-              <span className="stat-number">{highScore} pts</span>
-              <span className="stat-title">High Score</span>
+          <div className="ribbon-stat-item">
+            <Trophy size={20} className="ribbon-icon trophy-color" />
+            <div className="ribbon-text">
+              <strong className="ribbon-val">{highScore}</strong>
+              <span className="ribbon-lbl">High Score</span>
             </div>
           </div>
 
-          <div className="stat-pill">
-            <div className="stat-icon-wrapper rank-accent">
-              <Award size={22} className="accent-icon" />
-            </div>
-            <div className="stat-details">
-              <span className="stat-number">Level {level}</span>
-              <span className="stat-title">Player Tier</span>
+          <div className="ribbon-stat-item">
+            <Award size={20} className="ribbon-icon rank-color" />
+            <div className="ribbon-text">
+              <strong className="ribbon-val">Lvl {level}</strong>
+              <span className="ribbon-lbl">Player Tier</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Difficulty Selection Section */}
-      <div className="cards-section">
-        <h2 className="section-title">
-          <span>Choose Your Challenge</span>
-        </h2>
+      {/* Main Level Cards Grid */}
+      <div className="mindrush-tiers-section">
+        <div className="tiers-header-row">
+          <h2 className="tiers-title">Choose Difficulty Tier</h2>
+          <span className="tiers-sub">Higher tiers have tighter time limits and award maximum points</span>
+        </div>
 
-        <div className="difficulty-grid">
-          {/* Card 1: Easy */}
-          <div className="difficulty-card easy-card">
-            <div className="card-badge easy-badge">Beginner</div>
-            <div className="mascot-avatar-box">
+        <div className="mindrush-tier-cards-grid">
+          {/* Card 1: Easy Tier */}
+          <div className="tier-card tier-easy" onClick={() => handleSelectDifficulty('easy')}>
+            <div className="tier-card-glow glow-easy"></div>
+            <div className="tier-top-row">
+              <span className="tier-badge badge-easy">Tier 01</span>
+              <span className="tier-status">Warm-up</span>
+            </div>
+
+            <div className="tier-mascot-frame">
               <Mascot variant="happy" size={130} />
             </div>
-            <h3 className="card-title">Easy</h3>
-            <p className="card-description">
-              Perfect for warming up your brain. Single puzzle challenge.
-            </p>
-            <div className="card-specs">
-              <div className="spec-item">
-                <Sparkles size={16} />
-                <span><strong>1 puzzle</strong></span>
+
+            <h3 className="tier-name">EASY</h3>
+            <p className="tier-summary">Single equation challenge designed for speed and practice.</p>
+
+            <div className="tier-specs-list">
+              <div className="spec-row">
+                <span className="spec-label">Puzzles</span>
+                <span className="spec-val">1 Puzzle</span>
               </div>
-              <div className="spec-dot">•</div>
-              <div className="spec-item">
-                <Trophy size={16} />
-                <span><strong>10 points</strong></span>
+              <div className="spec-row">
+                <span className="spec-label">Reward</span>
+                <span className="spec-val highlight-pts">+10 Pts</span>
               </div>
-              <div className="spec-dot">•</div>
-              <div className="spec-item">
-                <Clock size={16} />
-                <span>60s timer</span>
+              <div className="spec-row">
+                <span className="spec-label">Time Limit</span>
+                <span className="spec-val">60 Seconds</span>
               </div>
             </div>
-            <button
-              className="level-action-btn start-easy-btn"
-              onClick={() => handleSelectDifficulty('easy')}
-            >
+
+            <button className="tier-play-btn btn-easy">
               <Play size={18} fill="currentColor" />
-              <span>Start Easy</span>
+              <span>Launch Easy</span>
             </button>
           </div>
 
-          {/* Card 2: Medium */}
-          <div className="difficulty-card medium-card featured-card">
-            <div className="card-badge medium-badge">Most Popular</div>
-            <div className="mascot-avatar-box">
+          {/* Card 2: Medium Tier (Featured) */}
+          <div className="tier-card tier-medium featured-tier" onClick={() => handleSelectDifficulty('medium')}>
+            <div className="popular-ribbon">⭐ MOST POPULAR</div>
+            <div className="tier-card-glow glow-medium"></div>
+            <div className="tier-top-row">
+              <span className="tier-badge badge-medium">Tier 02</span>
+              <span className="tier-status">Logic Master</span>
+            </div>
+
+            <div className="tier-mascot-frame">
               <Mascot variant="glasses" size={130} />
             </div>
-            <h3 className="card-title">Medium</h3>
-            <p className="card-description">
-              Test your logic with multi-stage equations and shorter time limits.
-            </p>
-            <div className="card-specs">
-              <div className="spec-item">
-                <Sparkles size={16} />
-                <span><strong>2 puzzles</strong></span>
+
+            <h3 className="tier-name">MEDIUM</h3>
+            <p className="tier-summary">Multi-step equations requiring quick arithmetic and sharp focus.</p>
+
+            <div className="tier-specs-list">
+              <div className="spec-row">
+                <span className="spec-label">Puzzles</span>
+                <span className="spec-val">2 Puzzles</span>
               </div>
-              <div className="spec-dot">•</div>
-              <div className="spec-item">
-                <Trophy size={16} />
-                <span><strong>20 points</strong></span>
+              <div className="spec-row">
+                <span className="spec-label">Reward</span>
+                <span className="spec-val highlight-pts">+20 Pts</span>
               </div>
-              <div className="spec-dot">•</div>
-              <div className="spec-item">
-                <Clock size={16} />
-                <span>45s timer</span>
+              <div className="spec-row">
+                <span className="spec-label">Time Limit</span>
+                <span className="spec-val">45 Seconds</span>
               </div>
             </div>
-            <button
-              className="level-action-btn start-medium-btn"
-              onClick={() => handleSelectDifficulty('medium')}
-            >
+
+            <button className="tier-play-btn btn-medium">
               <Play size={18} fill="currentColor" />
-              <span>Start Medium</span>
+              <span>Launch Medium</span>
             </button>
           </div>
 
-          {/* Card 3: Hard */}
-          <div className="difficulty-card hard-card">
-            <div className="card-badge hard-badge">Superhero</div>
-            <div className="mascot-avatar-box">
+          {/* Card 3: Hard Tier */}
+          <div className="tier-card tier-hard" onClick={() => handleSelectDifficulty('hard')}>
+            <div className="tier-card-glow glow-hard"></div>
+            <div className="tier-top-row">
+              <span className="tier-badge badge-hard">Tier 03</span>
+              <span className="tier-status">Lightning Fast</span>
+            </div>
+
+            <div className="tier-mascot-frame">
               <Mascot variant="super" size={130} />
             </div>
-            <h3 className="card-title">Hard</h3>
-            <p className="card-description">
-              Intense 3-stage challenge for rapid-fire puzzle masters!
-            </p>
-            <div className="card-specs">
-              <div className="spec-item">
-                <Flame size={16} />
-                <span><strong>3 puzzles</strong></span>
+
+            <h3 className="tier-name">HARD</h3>
+            <p className="tier-summary">Triple equation gauntlet against a relentless 30-second timer!</p>
+
+            <div className="tier-specs-list">
+              <div className="spec-row">
+                <span className="spec-label">Puzzles</span>
+                <span className="spec-val">3 Puzzles</span>
               </div>
-              <div className="spec-dot">•</div>
-              <div className="spec-item">
-                <Trophy size={16} />
-                <span><strong>40 points</strong></span>
+              <div className="spec-row">
+                <span className="spec-label">Reward</span>
+                <span className="spec-val highlight-pts">+40 Pts</span>
               </div>
-              <div className="spec-dot">•</div>
-              <div className="spec-item">
-                <Clock size={16} />
-                <span>30s timer</span>
+              <div className="spec-row">
+                <span className="spec-label">Time Limit</span>
+                <span className="spec-val">30 Seconds</span>
               </div>
             </div>
-            <button
-              className="level-action-btn start-hard-btn"
-              onClick={() => handleSelectDifficulty('hard')}
-            >
+
+            <button className="tier-play-btn btn-hard">
               <Flame size={18} />
-              <span>Start Hard</span>
+              <span>Launch Hard</span>
             </button>
           </div>
         </div>

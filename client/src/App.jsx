@@ -24,7 +24,7 @@ function MainAppContent() {
     return (
       <div className="app-loading-screen">
         <div className="banana-spinner">🍌</div>
-        <h2>Loading Banana Quest...</h2>
+        <h2>Loading MindRush...</h2>
       </div>
     );
   }

@@ -71,139 +71,159 @@ export default function LoginForm({ onSwitchToRegister, onLoginSuccess }) {
   };
 
   return (
-    <div className="auth-card-container">
-      <div className="auth-card">
-        {/* Left Side: Mascot Illustration */}
-        <div className="auth-visual-side">
-          <div className="visual-badge">Welcome Back, Adventurer!</div>
-          <Mascot variant="happy" size={170} />
-          <h2 className="visual-heading">Ready for the Jungle?</h2>
-          <p className="visual-text">
-            Solve math riddles, collect bananas, and climb to the top of the global leaderboard!
-          </p>
-          <div className="visual-fun-fact">
-            <span>🍌 Fun Fact:</span> Monkeys love solving equations almost as much as eating bananas!
+    <div className="mindrush-login-viewport">
+      <div className="mindrush-login-container">
+        {/* Top Hero Welcome Bar */}
+        <div className="login-hero-header">
+          <div className="mindrush-hero-badge pulse-glow">
+            <span className="hero-badge-icon">🧠</span>
+            <span className="hero-badge-text">MINDRUSH ARENA</span>
           </div>
+          <h1 className="login-hero-title">Step into the Math Challenge</h1>
+          <p className="login-hero-subtitle">
+            Sign in to unlock real-time algebraic puzzles, earn speed bonuses, and climb the leaderboard!
+          </p>
         </div>
 
-        {/* Right Side: Login Form */}
-        <div className="auth-form-side">
-          <div className="auth-header">
-            <div className="game-brand-pill">
-              <span className="banana-spin">🍌</span> BANANA QUEST
+        {/* The Main 2-Column Floating Card */}
+        <div className="mindrush-login-card">
+          {/* Left Hero Card with Mascot & Interactive Perks */}
+          <div className="login-card-left">
+            <div className="left-mascot-wrapper float-anim">
+              <Mascot variant="happy" size={160} />
             </div>
-            <h1 className="auth-title">Player Sign In</h1>
-            <p className="auth-subtitle">
-              Enter your credentials to access your virtual identity & stats
+            <h3 className="left-hero-greeting">Ready to test your speed?</h3>
+            <p className="left-hero-desc">
+              Fast answers earn bonus points! Protect your lives and climb the ranks.
             </p>
+
+            <div className="perks-list">
+              <div className="perk-pill">
+                <span className="perk-icon">⚡</span>
+                <span>Speed bonuses on fast answers</span>
+              </div>
+              <div className="perk-pill">
+                <span className="perk-icon">❄️</span>
+                <span>Time Freeze &amp; AI Clue power-ups</span>
+              </div>
+              <div className="perk-pill">
+                <span className="perk-icon">🏆</span>
+                <span>Live competitive ranking tier</span>
+              </div>
+            </div>
           </div>
 
-          {(localError || authError) && (
-            <div className="error-alert">
-              <AlertCircle size={18} />
-              <span>{localError || authError}</span>
+          {/* Right Form Card */}
+          <div className="login-card-right">
+            <div className="form-heading-row">
+              <h2 className="login-box-title">Player Sign In</h2>
+              <span className="login-box-tag">Secure JWT</span>
             </div>
-          )}
 
-          <form onSubmit={handleSubmit} className="auth-form">
-            {/* Email Field */}
-            <div className="form-group">
-              <label htmlFor="email">Email Address</label>
-              <div className="input-wrapper">
-                <Mail className="input-icon" size={18} />
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="e.g. alex@bananaquest.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={loading}
-                />
+            {/* Error alerts */}
+            {(localError || authError) && (
+              <div className="error-alert">
+                <AlertCircle size={18} />
+                <span>{localError || authError}</span>
               </div>
-            </div>
+            )}
 
-            {/* Password Field */}
-            <div className="form-group">
-              <div className="label-with-link">
-                <label htmlFor="password">Password</label>
+            <form onSubmit={handleSubmit} className="mindrush-auth-form">
+              <div className="form-group">
+                <label htmlFor="email">Player Email</label>
+                <div className="input-wrapper">
+                  <Mail className="input-icon" size={18} />
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="alex@bananaquest.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={loading}
+                    autoComplete="email"
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <div className="label-with-link">
+                  <label htmlFor="password">Password</label>
+                  <button
+                    type="button"
+                    className="text-link"
+                    onClick={() => {
+                      sounds.playClick();
+                      setForgotModal(true);
+                    }}
+                  >
+                    Forgot password?
+                  </button>
+                </div>
+                <div className="input-wrapper">
+                  <Lock className="input-icon" size={18} />
+                  <input
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    disabled={loading}
+                    autoComplete="current-password"
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle"
+                    onClick={() => setShowPassword(!showPassword)}
+                    tabIndex={-1}
+                  >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                className="primary-btn submit-btn"
+                disabled={loading}
+              >
+                {loading ? (
+                  <span>Authenticating...</span>
+                ) : (
+                  <>
+                    <span>Enter MindRush</span>
+                    <ArrowRight size={18} />
+                  </>
+                )}
+              </button>
+
+              <div className="demo-login-divider">
+                <span>OR INSTANT ACCESS</span>
+              </div>
+
+              <button
+                type="button"
+                className="secondary-btn demo-btn"
+                onClick={handleDemoLogin}
+                disabled={loading}
+              >
+                <Zap size={16} className="zap-icon" />
+                <span>Instant Play as Demo User (Alex)</span>
+              </button>
+
+              <div className="auth-footer">
+                <span>Don't have a MindRush account?</span>
                 <button
                   type="button"
-                  className="text-link"
+                  className="switch-auth-btn"
                   onClick={() => {
                     sounds.playClick();
-                    setForgotModal(true);
+                    onSwitchToRegister();
                   }}
                 >
-                  Forgot password?
+                  Create an Account
                 </button>
               </div>
-              <div className="input-wrapper">
-                <Lock className="input-icon" size={18} />
-                <input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  disabled={loading}
-                />
-                <button
-                  type="button"
-                  className="password-toggle"
-                  onClick={() => setShowPassword(!showPassword)}
-                  tabIndex={-1}
-                >
-                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                </button>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="primary-btn submit-btn"
-              disabled={loading}
-            >
-              {loading ? (
-                <span className="spinner-dots">Logging in...</span>
-              ) : (
-                <>
-                  <span>Login</span>
-                  <ArrowRight size={18} />
-                </>
-              )}
-            </button>
-
-            {/* Quick Demo Login (Helpful for Tutors / Demonstrations) */}
-            <div className="demo-login-divider">
-              <span>OR TRY WITH ONE CLICK</span>
-            </div>
-
-            <button
-              type="button"
-              className="demo-login-btn"
-              onClick={handleDemoLogin}
-              disabled={loading}
-              title="Instantly sign in as Alex (Pre-loaded with 120 bananas and stats)"
-            >
-              <Zap size={16} className="zap-icon" />
-              <span>Quick Login as Demo User (Alex)</span>
-            </button>
-          </form>
-
-          {/* Footer Link to Register */}
-          <div className="auth-footer">
-            <span>Don't have a Banana Quest account?</span>
-            <button
-              type="button"
-              className="switch-auth-btn"
-              onClick={() => {
-                sounds.playClick();
-                onSwitchToRegister();
-              }}
-            >
-              Create Account
-            </button>
+            </form>
           </div>
         </div>
       </div>

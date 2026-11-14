@@ -137,7 +137,7 @@ export default function RegisterForm({ onSwitchToLogin, onRegisterSuccess }) {
         <div className="auth-form-side">
           <div className="auth-header">
             <div className="game-brand-pill">
-              <span className="banana-spin">🍌</span> BANANA QUEST
+              <span className="banana-spin">🧠</span> MINDRUSH
             </div>
             <h1 className="auth-title">Create Your Account</h1>
             <p className="auth-subtitle">
